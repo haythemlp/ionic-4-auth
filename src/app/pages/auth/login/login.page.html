@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>login</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form action="" (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+        <ion-item>
+            <ion-label position="floating" >Email</ion-label>
+            <ion-input type="email" ngModel name="email" required email></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" ngModel name="password" required minlength="6"></ion-input>
+        </ion-item>
+
+            <ion-button [disabled]="!loginForm.form.valid" expand="full" margin-top="" type="submit">Login</ion-button>
+    </form>
+    <ion-button expand="full" margin-top="" routerLink="/register" routerDirection='root'>Register</ion-button>
+    <ion-button expand="full" margin-top="" routerLink="/" routerDirection='root'>home</ion-button>
+
+</ion-content>

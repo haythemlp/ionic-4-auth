@@ -1,5 +1,7 @@
 {
   "name": "app-uber",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
