@@ -11,7 +11,8 @@ export const environment = {
         projectId: 'uber-eb0a1',
         storageBucket: 'uber-eb0a1.appspot.com',
         messagingSenderId: '205238616192'
-    }
+    },
+    url:'http://localhost:8000/api/'
 };
 
 /*
