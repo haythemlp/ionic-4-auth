@@ -19,12 +19,11 @@ export class LoginPage implements OnInit {
 
     login(data: NgForm) {
 
-        console.log(data.value);
 
-        this.authService.login(data.value.email, data.value.password).subscribe(allowed => {
+        this.authService.login(data.value).subscribe(allowed => {
                 if (allowed) {
-                    console.log('work')
-                    this.router.navigate(['/']);
+                    console.log('work');
+                  //  this.router.navigate(['/']);
                 } else {
                     console.log('These credentials do not match our records.');
                 }

@@ -17,11 +17,19 @@ export class RegisterPage implements OnInit {
     }
 
     register(data: NgForm) {
+
+
         this.authService.register(data.value)
             .subscribe(success => {
+
+
                 if (success) {
+
+                    if(!success.success){
+                     console.log(success.error);
+                    }
                     console.log('works');
-                    this.router.navigate(['/login']);
+                    //     this.router.navigate(['/login']);
                 } else {
                     console.log('Error Problem creating account.');
                 }
