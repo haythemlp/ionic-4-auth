@@ -82,8 +82,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="cordova-plugin-facebook4" spec="4.1.0">
-        <variable name="APP_ID" value="323147021630160" />
-        <variable name="APP_NAME" value="uber-gafsa" />
-    </plugin>
+    <engine name="android" spec="7.1.4" />
 </widget>
