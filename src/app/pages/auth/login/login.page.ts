@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
-import { Router} from '@angular/router';
+import {Router} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {SESSION_STORAGE, StorageService} from 'angular-webstorage-service';
 
 @Component({
     selector: 'app-login',
@@ -11,7 +13,9 @@ import { Router} from '@angular/router';
 export class LoginPage implements OnInit {
 
 
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private authService: AuthService,
+                private router: Router,
+                @Inject(SESSION_STORAGE) private storage: StorageService) {
     }
 
     ngOnInit() {
@@ -20,17 +24,32 @@ export class LoginPage implements OnInit {
     login(data: NgForm) {
 
 
-        this.authService.login(data.value).subscribe(allowed => {
-                if (allowed) {
-                    console.log('work');
-                  //  this.router.navigate(['/']);
+        this.authService.login(data.value)
+            .pipe(map(success => {
+                let res = success.json();
+
+                if (res) {
+
+                    if (!res.success) {
+                        console.log(res.error);
+
+                    } else {
+// this.storage.set()
+
+                        localStorage.setItem('user', res.data.token);
+
+
+                        console.log('works');  //     this.router.navigate(['/login']);
+                    }
+
+
                 } else {
-                    console.log('These credentials do not match our records.');
+                    console.log('Error Problem creating account.');
                 }
-            },
-            error => {
-                console.log(error);
-            });
+            }))
+            .subscribe();
+
+
     }
 
 }

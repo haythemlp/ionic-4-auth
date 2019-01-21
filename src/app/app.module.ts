@@ -10,12 +10,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {StorageServiceModule} from 'angular-webstorage-service';
 
 
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule,HttpModule],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule,HttpModule,StorageServiceModule],
     providers: [
         StatusBar,
         SplashScreen,

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-register',
@@ -18,22 +19,29 @@ export class RegisterPage implements OnInit {
 
     register(data: NgForm) {
 
+        console.log(data.value);
+
 
         this.authService.register(data.value)
-            .subscribe(success => {
+            .pipe(map(success => {
+                let res = success.json();
 
+                if (res) {
 
-                if (success) {
+                    if (!res.success) {
+                        console.log(res.error);
 
-                    if(!success.success){
-                     console.log(success.error);
+                    } else {
+
+                        console.log('works');  //     this.router.navigate(['/login']);
                     }
-                    console.log('works');
-                    //     this.router.navigate(['/login']);
+
+
                 } else {
                     console.log('Error Problem creating account.');
                 }
-            });
+            }))
+            .subscribe();
 
 
     }

@@ -41,41 +41,17 @@ export class AuthService {
     }
 
 
-    register(credentials): Observable {
+    register(credentials) {
 
-        return Observable.create(observer => {
-            this.http.post(AuthService.REGISTER_URL, credentials)
-                .pipe(map(res => {
-                    console.log(res);
-                    this.user = res.json();
-                }), catchError(this.handleError)).subscribe();
-            observer.next(this.user);
-            observer.complete();
-        });
+        return this.http.post(AuthService.REGISTER_URL, credentials);
+
     }
 
     login(credentials) {
 
 
-        return Observable.create(observer => {
+        return this.http.post(AuthService.LOGIN_URL, credentials);
 
-            this.http.post(AuthService.LOGIN_URL, credentials)
-                .pipe(map(res => {
-                console.log(res);
-                this.user = res.json();
-            }), catchError(this.handleError)).subscribe();
-
-
-            setTimeout(() => {
-                observer.next(this.token);
-            }, 500);
-
-            setTimeout(() => {
-                observer.complete();
-            }, 1000);
-
-
-        }, err => console.error(err));
 
     }
 
